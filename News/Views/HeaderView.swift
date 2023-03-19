@@ -94,7 +94,7 @@ final class HeaderView: UIView {
         // subheadline
         NSLayoutConstraint.activate([
             subHeadlineLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            subHeadlineLabel.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 8),
+            subHeadlineLabel.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 20),
             subHeadlineLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
