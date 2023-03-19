@@ -11,6 +11,8 @@ final class HeaderView: UIView {
     
     private var fontSize: CGFloat
     
+    // MARK: - Headline label setup
+    
     private lazy var headlineLabel: UILabel = {
        let v = UILabel()
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -18,6 +20,8 @@ final class HeaderView: UIView {
         v.font = UIFont.boldSystemFont(ofSize: fontSize)
         return v
     }()
+    
+    // Mark: - Header Circle image setup
     
     private lazy var headerCircleImage: UIImageView = {
         let v = UIImageView()
@@ -28,6 +32,8 @@ final class HeaderView: UIView {
         return v
     }()
     
+    // Mark: - plus image setup
+    
     private lazy var plusImage: UIImageView = {
         let v = UIImageView()
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -36,6 +42,26 @@ final class HeaderView: UIView {
         return v
         
     }()
+    
+    private lazy var subHeadlineLabel: UILabel = {
+       let v = UILabel()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.font = v.font.withSize(fontSize)
+        v.text = "Top Headline News"
+        v.textColor = .gray
+        return v
+    }()
+    
+    // Mark: - Header stack View
+    
+    private lazy var headerStackView: UIStackView = {
+        let v = UIStackView(arrangedSubviews: [headerCircleImage, headlineLabel, plusImage])
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.axis = .horizontal
+        return v
+    }()
+    
+    // Mark: - Font setup
     
     init(fontSize: CGFloat) {
         self.fontSize = fontSize
@@ -48,11 +74,28 @@ final class HeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // Mark: - Add View
+    
     func setupView() {
+        
+        addSubview(headerStackView)
+        addSubview(subHeadlineLabel)
+        
         
         setupConstraints()
     }
     func setupConstraints() {
+        // news Header
+        NSLayoutConstraint.activate([
+            headerStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            headerStackView.topAnchor.constraint(equalTo: topAnchor)
+            ])
         
+        // subheadline
+        NSLayoutConstraint.activate([
+            subHeadlineLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            subHeadlineLabel.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 8),
+            subHeadlineLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
 }
